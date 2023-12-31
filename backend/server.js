@@ -14,6 +14,13 @@ const booksRouter = require('./collections/books')
 const storiesRouter = require('./collections/stories')
 const commentsRouter = require('./collections/comments')
 
+
+dotenv.config({ path: './config.env' });
+//mongodb connection
+mongoose.connect(process.env.DB)
+  .then(con => console.log("connected to db")) 
+  .catch(err=> console.log(err))
+  
 app.set('trust proxy', 1);
 
 app.use(cors({ credentials: true,
@@ -22,13 +29,9 @@ app.use(cors({ credentials: true,
 app.options('*', cors())
 
 //environment vars configuration
-dotenv.config({ path: './config.env' });
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-//mongodb connection
-mongoose.connect(process.env.DB)
-  .then(con => console.log("connected to db")) 
-  .catch(err=> console.log(err))
+
 
 
 //MIDDLEWARE
