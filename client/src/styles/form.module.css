@@ -1,0 +1,40 @@
+.formGroup input, .formGroup textarea{
+    border-radius: 10px !important;
+    border: 2px solid gray !important;
+
+}
+.button{
+    background: none;
+    border: 2px solid #00b1ea;
+    color: #00b1ea;
+    margin-top: 5%;
+    border-radius: 5px;
+}
+.deleteBtn{
+    border: 2px solid red;
+    color: red;
+    margin-left: 4%;
+}
+.form{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20%;
+}
+
+@media screen and (min-width: 400px) {
+    .form{
+        width: 60%;
+    }
+    .formGroup{
+        margin-bottom: 5% !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .formGroup input, .formGroup textarea, .formGroup label{
+        font-size: 13px !important;
+   }
+   .formGroup label{
+    font-weight: 600;
+   }
+}

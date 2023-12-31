@@ -1,0 +1,152 @@
+.showBtn{
+    font-size: 13px;
+    color: teal;
+    font-weight: 600;
+    background: none;
+    border: none;
+    text-decoration: underline;
+}
+ .navTabs{
+    white-space: nowrap;
+    margin-bottom: 5%;
+    padding: 0;
+ }
+ .title{
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.fullProloge{
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.summary{
+    font-size: 12px;
+    display: block;
+    margin: auto;
+    font-family: 'Arimo', sans-serif;
+    text-align: justify;
+    width: 90%;
+    white-space: pre-line;
+}
+
+.text{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 5%;
+}
+.author{
+    font-size: 13px;
+}
+
+.moreBooksCovers{
+    max-height: 135px;
+    max-width: 95px;
+    margin: auto;
+}
+
+.moreBooks{
+    display: flex;
+    overflow-x: auto;
+    padding: 0;
+    align-items: baseline;
+
+}
+
+.cover{
+    border-radius: 10px;
+    margin: auto;
+    width: 50%;
+}
+
+
+.card{
+    border: none;
+    padding-top: 5%;
+    text-align: center;
+    
+    
+}
+
+.moreBooksGrid .moreTitle, .moreBooksGrid .moreAuthor{
+    font-size: 12px !important;
+}
+
+.moreBooksContainer{
+    margin-top: 7%;
+}
+.tab{
+    font-size: 14px;
+    font-family: 'Arimo', sans-serif;
+}
+@media screen and (max-width: 528px) and (min-width: 490px){
+    .cover{
+        width: 40%;
+    }
+}
+
+@media screen  and (max-width: 768px)and (min-width: 528px){
+    .summary{
+        font-size: 12px !important;
+    }
+}
+
+@media screen and (min-width: 528px){
+    .navTabs{
+        margin-right: 5%;
+    }
+    .tab{
+        font-size: 16px;
+    }
+    .card:not(.storyCard){
+        max-width: 750px;
+    }
+    .card{
+        padding: 5%;
+        margin: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        
+    }
+
+    .showBtn{
+        font-size: 16px;
+    }
+   
+    .cover{
+        height: 250px;
+        min-width: 170px;
+    }
+    .title{
+        font-size: 15px;
+    }
+    .author{
+        font-size: 14px;
+    }
+    .summary{
+        font-size: 15px;
+        margin: 2% 8% 0% 0%;
+    }
+    .text{
+        box-shadow: none;
+        padding: unset;
+    }
+  }
+
+
+@media screen and (min-width: 401px) {
+    .moreBooksCovers{
+        max-height: 150px;
+        max-width: 115px;
+        margin: auto;
+    }
+  }
+
+  @media screen and (max-width: 528px) {
+    .navTabs{
+        overflow-x: scroll;
+    }
+  }
+

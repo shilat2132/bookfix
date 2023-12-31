@@ -1,0 +1,33 @@
+#navbarBrand{
+    margin-left: 5%;
+}
+
+#navbarToggler, #navbarToggler:focus{
+    border: none;
+    box-shadow: none;
+}
+
+.navbar{
+    background: #0F2027; 
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    
+}
+
+.watchCart{
+    margin-top: 5px;
+    height: 27px;
+}
+
+
+@media screen and (min-width: 992px) {
+    .nav{
+        margin-left: 4%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .navLink, .watchCart{
+      margin-right: 5%;
+    }
+  }
