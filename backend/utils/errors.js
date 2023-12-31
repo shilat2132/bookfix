@@ -19,18 +19,24 @@ const sendErrorDev = (error, res)=>{
 }
 
 const sendErrorProd = (error, res)=>{
-    if(error.isOperational){
-        return res.status(error.statusCode).json({
-            status: error.status,
-            error: error,
-            message: error.message,
-        })
-    }else{
-        return res.status(500).json({
-            status: 'error',
-            message: "something is wrong"
-        });
-    }
+    return res.status(error.statusCode).json({
+                status: error.status,
+                error: error,
+                message: error.message,
+            })
+        }
+    // if(error.isOperational){
+    //     return res.status(error.statusCode).json({
+    //         status: error.status,
+    //         error: error,
+    //         message: error.message,
+    //     })
+    // }else{
+    //     return res.status(500).json({
+    //         status: 'error',
+    //         message: "something is wrong"
+    //     });
+    // }
 }
 
 function errorsHandler(err, req, res, next){
