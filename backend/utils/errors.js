@@ -24,7 +24,7 @@ const sendErrorProd = (error, res)=>{
                 error: error,
                 message: error.message,
             })
-        }
+        
     // if(error.isOperational){
     //     return res.status(error.statusCode).json({
     //         status: error.status,
