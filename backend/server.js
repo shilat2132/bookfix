@@ -35,11 +35,12 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 
 
 //MIDDLEWARE
+  // express.json(): Parses incoming JSON requests.
+  // express.urlencoded(): Parses data like form submissions.
 app.use(express.json({limit: '10kb'}));
 app.use(express.urlencoded({ extended: true }));
 
 //routes MW
-
 app.use("/api/books", booksRouter)
 app.use("/api/stories", storiesRouter)
 app.use("/api/comments", commentsRouter)

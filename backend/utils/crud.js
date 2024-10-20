@@ -1,6 +1,19 @@
+// this is a file for a general pattern of crud
+
 const catchAsync = require("./catchAsync")
 const { AppError } = require("./errors")
 
+
+/**
+ * Retrieves all documents from the specified `Model` based on optional query parameters.
+ *
+ * - Filters results based on `zenere` and `search` query parameters.
+ * - Supports sorting by price if `sortPrice` is provided.
+
+ * Response:
+ * - Success: Returns an array of matching documents with a 200 status code.
+ * - Failure: Throws a 404 error if no documents are found.
+ */
 exports.getAll = Model =>(
     catchAsync(async (req, res, next)=>{
         let docs, queryOptions = {};
@@ -31,6 +44,9 @@ exports.getAll = Model =>(
     })
 )
 
+
+/** create new doc of the model
+ * @returns status code of 200 if successful and docId which is the id of the new document*/ 
 exports.createOne = Model =>(
     catchAsync(async (req, res, next)=>{
         const doc = await Model.create(req.body)
@@ -38,6 +54,11 @@ exports.createOne = Model =>(
     })
 )
 
+
+/** retrives the specific document of the given model by its id, and any additional data
+ * @param the Model itself and its name
+ * @returns the document and additional data if exists or 404 error if not found
+ */
 exports.getOne = (Model, modelName)=>(
     catchAsync(async (req, res, next)=>{
         const doc = await Model.findById(req.params.id)
@@ -45,6 +66,8 @@ exports.getOne = (Model, modelName)=>(
                 return next(new AppError('לא נמצא מסמך מתאים'), 404)
         }
         let extraData;
+
+        // for a story - retrieves the books from the same series, for a book - retrives the books of the same authors
         if(modelName === "story" && doc.series){
             const seriesBooks = await Model.find({_id: {$ne: doc._id}, series: doc.series})
             extraData = seriesBooks
@@ -56,6 +79,14 @@ exports.getOne = (Model, modelName)=>(
     })
 )
 
+
+/**
+ * Updates a document by id with provided in the URL.
+
+ * Response:
+ * - Success: Returns the updated document with a 200 status code.
+ * - Failure: Throws a 404 error if the document with the provided ID is not found.
+ */
 exports.updateOne = Model=>(
     catchAsync(async (req, res, next)=>{
         const doc = await Model.findByIdAndUpdate(req.params.id, req.body,  {new: true, runValidators: true})
@@ -67,6 +98,8 @@ exports.updateOne = Model=>(
     
 )
 
+
+/** finds a doc by id and deletes returns 204 code */
 exports.deleteOne = Model=>(
     catchAsync(async (req, res, next)=>{
         await Model.findByIdAndDelete(req.params.id)
@@ -74,8 +107,15 @@ exports.deleteOne = Model=>(
     })
 )
 
+
 //restricting MW
 
+/**  Middleware to restrict access to certain routes based on a secret key.
+ *
+ * - Verifies authorization for specific routes (`/comments`) and methods (`GET` and `DELETE`) using a secret key.
+ * - Checks if the secret key is provided either in the request body, URL parameters, or the URL itself.
+ * - If the secret matches the one stored in the environment (`process.env.SECRET`), the request is authorized.
+ * - If the secret is invalid or missing, it throws a 401 Unauthorized error. */
 exports.restriction = catchAsync(async (req, res, next)=>{
     let isAuthorized = false;
     const urlArray = req.originalUrl.split("/")
