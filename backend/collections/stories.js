@@ -21,6 +21,7 @@ const storySchema = new mongoose.Schema({
     toObject: {virtuals: true}
 })
 
+// Define a virtual field "comments" to link related Comment documents to each Story.
 storySchema.virtual("comments",{
     ref: "Comment",
     foreignField: "story",

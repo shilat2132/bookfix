@@ -56,7 +56,7 @@ exports.createOne = Model =>(
 
 
 /** retrives the specific document of the given model by its id, and any additional data
- * @param the Model itself and its name
+ * @param Model the itself and its name
  * @returns the document and additional data if exists or 404 error if not found
  */
 exports.getOne = (Model, modelName)=>(

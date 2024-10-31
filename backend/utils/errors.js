@@ -1,3 +1,4 @@
+/** custom error object with specific message */
 class AppError extends Error{
     constructor(message, statusCode){
         super(message);
@@ -33,6 +34,10 @@ const sendErrorProd = (error, res)=>{
     }
 }
 
+/**global error handler
+ * handles validation and type error of db's fields
+ * both for development and production environments
+ */
 function errorsHandler(err, req, res, next){
     err.statusCode = err.statusCode || 500
     err.status = err.status || 'error';
@@ -43,7 +48,7 @@ function errorsHandler(err, req, res, next){
 
     //here goes the handling functions
     if(error.name === "ValidationError") error= handleValidationErrorDB(error)
-    if (error.name === 'CastError') error = handleCastErrorDB(error);
+    if (error.name === 'CastError') error = handleDBFieldTypeError(error);
 
     
     if(process.env.NODE_ENV === "development"){
@@ -53,13 +58,14 @@ function errorsHandler(err, req, res, next){
     }
 }
 
+/** Processes MongoDB validation errors and returns a formatted AppError. */
 function handleValidationErrorDB(error){
     const errors = Object.values(error.errors).map(e=> e.message)
     const message = errors.join('. ')
     return new AppError(message, 400);
 }
 
-function handleCastErrorDB (error){
+function handleDBFieldTypeError (error){
     const message = `הערך  ${error.value}, לא חוקי לשדה  ${error.path}`
     return new AppError(message, 400)
 }

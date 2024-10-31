@@ -14,6 +14,7 @@ const commentSchema = new mongoose.Schema({
     }
 })
 
+// populates the name of the story which the comment was written on
 commentSchema.pre(/^find/, function(next){
     this.populate({path: "story", select: "title"}) 
     next()

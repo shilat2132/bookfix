@@ -2,15 +2,21 @@ import { defer, json, redirect } from "react-router-dom";
 
 
 //PROTECT ROUTES
+/**compares the passwoed in the url with the onw saved in the config file
+ * @return 200 in case of success and 401 for not authorized
+ */
 function protectRoutes({request}){
     const url = new URL(request.url).searchParams
     const password = url.get("password")
+    console.log("All environment variables:", process.env);
+    console.log("REACT_APP_PASSWORD:", process.env.REACT_APP_PASSWORD);
     if(!password || (password !== process.env.REACT_APP_PASSWORD)) return 401
     return 200
 }
 
 export function protectRoutesLoader({request, params}){
     const authStatus = protectRoutes({request})
+    console.log(authStatus)
     if(authStatus !==200) {
         const collection = params.collection
         if(collection !== "books" && collection!== "stories"){
