@@ -46,12 +46,12 @@ app.use("/api/books", booksRouter)
 app.use("/api/stories", storiesRouter)
 app.use("/api/comments", commentsRouter)
   
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/src/index.html'));
-});
 // app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+//   res.sendFile(path.join(__dirname, '../client/src/index.html'));
 // });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 
 app.all('*', (req,res, next)=>{
