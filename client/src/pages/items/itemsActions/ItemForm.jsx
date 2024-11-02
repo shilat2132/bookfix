@@ -5,6 +5,11 @@ import { useState } from "react";
 import { DeleteModal } from "../../../UI/DeleteModal";
 import Modal from 'react-bootstrap/Modal';
 
+/**a form component for creating or editing a book/story
+ * @param method - either post for creating an item or patch for editing
+ * @param collection - either books or stories
+ * @param item - in case of editing, item would be the item to edit with previous details
+ */
 export const ItemForm = ({method, collection, item})=>{
     const action = useActionData()
     const [show, setShow] = useState(false);
@@ -45,27 +50,27 @@ export const ItemForm = ({method, collection, item})=>{
             <FormComp method={method} className={formStyles.form}>
                 {inputs.map((input, i)=>{
                    if(input.inputType === "select"){
-                    let options;
-                    if(input.name==="zenere"){
-                        options = <>
-                            <option value="פנטזיה">פנטזיה</option>
-                            <option value="רומנטיקה">רומנטיקה</option>
-                            <option value="מתח">מתח</option>
-                            <option value="אנגלית">אנגלית</option>
-                            <option value="עיון">עיון</option>
-                        </>
-                    }else{
-                        options = <>
-                            <option value="true">כן</option>
-                            <option value="false">לא</option>
-                        </>
-                    }
-                    return(
-                        <Form.Select defaultValue={toUpdate ? book[input.name]: ''} required={input.isRequired} className={formStyles.select} key={i} name={input.name} aria-label={input.label}>
-                            <option value="">{input.label}</option>
-                            {options}
-                        </Form.Select>
-                    )
+                        let options;
+                        if(input.name==="zenere"){
+                            options = <>
+                                <option value="פנטזיה">פנטזיה</option>
+                                <option value="רומנטיקה">רומנטיקה</option>
+                                <option value="מתח">מתח</option>
+                                <option value="אנגלית">אנגלית</option>
+                                <option value="עיון">עיון</option>
+                            </>
+                        }else{
+                            options = <>
+                                <option value="true">כן</option>
+                                <option value="false">לא</option>
+                            </>
+                        }
+                        return(
+                            <Form.Select defaultValue={toUpdate ? book[input.name]: ''} required={input.isRequired} className={formStyles.select} key={i} name={input.name} aria-label={input.label}>
+                                <option value="">{input.label}</option>
+                                {options}
+                            </Form.Select>
+                        )
                    }else if(input.inputType === "textarea"){
                         return(
                             <Form.Group key={i} className={`mb-3 ${formStyles.formGroup}`} controlId={`formGroup${input.name}`}>
@@ -89,7 +94,7 @@ export const ItemForm = ({method, collection, item})=>{
                <div className="text-center">
                 {action && action.error && <p className="errorMessage">{action.error} </p>}
                 <Modal show={show} onHide={handleClose}><DeleteModal handleClose={handleClose}/> </Modal>
-                <button className={`${formStyles.button} ${formStyles.deleteBtn}`} type="button" onClick={handleShow}>מחיקת פריט</button>
+                {toUpdate&& <button className={`${formStyles.button} ${formStyles.deleteBtn}`} type="button" onClick={handleShow}>מחיקת פריט</button>}
                 <button className={`${formStyles.button}`}>סיים</button>
                </div>
            

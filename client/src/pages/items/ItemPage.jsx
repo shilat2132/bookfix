@@ -4,6 +4,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Book } from "../books/Book";
 import { Story } from "../books/Story";
 
+
+/**item page, loads different component for a book and a story */
 const ItemPage = ()=>{
     const {itemData} = useRouteLoaderData("book")
     const params = useParams()

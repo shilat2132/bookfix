@@ -6,6 +6,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { FilterForm } from '../../UI/FilterForm';
 
+/**component for all of the items with a filter form in case this is the books collection */
 export const AllItems = ({items})=>{
     const params = useParams()
     const [searchParams] = useSearchParams()

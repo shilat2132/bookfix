@@ -3,10 +3,15 @@ import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
 import { ItemGrid } from '../items/ItemGrid';
 
+
+/**component for a book */
 export const Book = ({item})=>{
     const {doc: book, extraData} = item
     const hasExtraData = extraData && extraData.length >0
 
+    /** * Creates a object with modified HTML for use in React's `dangerouslySetInnerHTML`.
+     *used for the payment button, adds a css class to the add to cart icon
+ */
     function createMarkup(htmlString) {
         const replaceSearch = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png"'
         const replaceTo = replaceSearch+' class= "addToCartImg"'

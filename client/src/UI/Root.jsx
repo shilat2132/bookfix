@@ -4,6 +4,7 @@ import { NavLink, Outlet, useParams } from 'react-router-dom';
 import navStyles from '../styles/navbar.module.css'
 import { Search } from './Search';
 
+/**the navbar component */
 export const Navigation = ()=>{
   return(
     <Navbar  data-bs-theme="dark" fixed="top" expand="lg" className={` ${navStyles.navbar}`}>
@@ -14,6 +15,8 @@ export const Navigation = ()=>{
           <Nav className={`${navStyles.nav} me-auto`}>
              <NavLink className={`nav-link ${navStyles.navLink}`} to="/books">ספרי יד שנייה</NavLink>
              <NavLink className={`nav-link ${navStyles.navLink}`} to="/stories">הספרים שלי</NavLink>
+
+             {/* the cart icon */}
             <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
                 <input type="hidden" name="cmd" value="_cart"/>
                 <input type="hidden" name="business" value="A3X3LLY3J7P9J"/>
@@ -26,6 +29,9 @@ export const Navigation = ()=>{
     )
 }
 
+/**the root layout for every page in the react app
+ * includes a navbar and a search bar
+ */
 const RootLayout = ()=>{
   const params = useParams()
   const collection = params.collection

@@ -3,7 +3,7 @@ import { Await, useLoaderData } from "react-router-dom"
 import Spinner from 'react-bootstrap/Spinner';
 import { AllItems } from "./AllItems";
 
-
+/**Renders a list of items with asynchronous data loading, displaying a loading spinner while waiting. */
 const ItemsPage = ()=>{
     const {itemsData} = useLoaderData()
     return (

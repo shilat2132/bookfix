@@ -1,6 +1,7 @@
 import { useRouteError } from "react-router-dom"
 import { Navigation } from "../UI/Root";
 
+/**error page - shows either a general or specific error */
 export const ErrorPage = ()=>{
     const error = useRouteError()
     let errorMessage;

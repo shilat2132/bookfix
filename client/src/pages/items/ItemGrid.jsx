@@ -3,6 +3,8 @@ import itemGridStyles from '../../styles/itemGrid.module.css'
 import bookStyles from '../../styles/book.module.css'
 import { NavLink, useParams } from 'react-router-dom';
 
+/**component for a single item (book/story) in a grid 
+ * either a grid in the index page or a grid of the more books to show */
 export const ItemGrid = ({item, route})=>{
    const params = useParams()
     return (

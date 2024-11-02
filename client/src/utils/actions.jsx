@@ -1,7 +1,7 @@
 import {redirect} from 'react-router-dom'
 
 
-//return the body obj only with the fields which were actually updated
+/**return the body obj only with the fields which were actually updated*/
 function clearUndefinedFields(obj){
     const newObj ={}
     Object.keys(obj).forEach(key=>{
@@ -12,7 +12,7 @@ function clearUndefinedFields(obj){
     return newObj
 }
 
-//deleting a book/story
+/**deleting a book/story */
 export const deleteItemAction = async ({request, params})=>{
     const collection = params.collection
     const formData = await request.formData()
@@ -34,7 +34,7 @@ export const deleteItemAction = async ({request, params})=>{
 
 }
 
-//creating or updating a book/story
+/**creating or updating a book/story */
 export const itemAction = async ({request, params})=>{
     const method = request.method
     const collection = params.collection
@@ -68,7 +68,7 @@ export const itemAction = async ({request, params})=>{
 }
 
 
-//adding a comment
+/**action for adding a comment. recieves the comment's data*/
 export const addCommentAction = async({request, params})=>{
     const body = Object.fromEntries(await request.formData());
     body.story = params.id

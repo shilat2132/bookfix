@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkclient=self.webpackChunkclient||[]).push([[661],{204:(e,n,t)=>{t.r(n),t.d(n,{default:()=>i});var c=t(2791),s=t(7689),l=t(4849),a=t(671),o=t(184);const i=()=>{const{itemData:e}=(0,s.V4)("book"),n=(0,s.UO)();return(0,o.jsx)(c.Suspense,{fallback:(0,o.jsx)(l.Z,{animation:"border",variant:"secondary"}),children:(0,o.jsx)(s.KP,{resolve:e,children:e=>(0,o.jsx)(a.W,{item:e,method:"PATCH",collection:n.collection})})})}}}]);
-//# sourceMappingURL=661.810f4e52.chunk.js.map

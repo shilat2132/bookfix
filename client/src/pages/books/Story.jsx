@@ -5,7 +5,7 @@ import { ItemGrid } from '../items/ItemGrid';
 import { StoryTabs } from '../../UI/StoryTabs';
 import { CommentsSection } from '../comments/CommentsItems';
 
-
+/**story component with comments section and tabs for story's details */
 export const Story = ({item})=>{
     const {doc: book, extraData} = item
    

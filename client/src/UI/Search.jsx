@@ -1,10 +1,11 @@
 import { Form, useNavigate } from "react-router-dom"
 import searchStyles from '../styles/search.module.css'
 
-
+/**the search bar component */
 export const Search = ({collection})=>{
     const navigate = useNavigate()
 
+    /**sends an api request for searching the given value */
     function handleSubmit(event){
         event.preventDefault()
         const search = document.getElementById("search").value
