@@ -14,6 +14,12 @@ const bookSchema = new mongoose.Schema({
     authorHasMoreBooks: {type: Boolean, default: false}
 })
 
+bookSchema.pre("save", function(next){
+    const replaceSearch = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png"'
+    const replaceTo = replaceSearch+' class= "addToCartImg"'
+    let htmlString = this.payBtn
+    this.payBtn = htmlString.replace(replaceSearch, replaceTo)
+})
 const Book = new mongoose.model("Book", bookSchema)
 
 //HANDLERS
