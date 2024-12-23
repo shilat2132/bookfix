@@ -21,6 +21,19 @@ bookSchema.pre("save", function(next){
     this.payBtn = htmlString.replace(replaceSearch, replaceTo)
     next()
 })
+
+bookSchema.pre("findOneAndUpdate", function(next) {
+    const replaceSearch = 'src="https://www.paypalobjects.com/he_IL/i/btn/btn_cart_LG.gif"';
+    const replaceTo = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png" class= "addToCartImg"';
+    
+    if (this._update.payBtn) {
+        let htmlString = this._update.payBtn;
+        this._update.payBtn = htmlString.replace(replaceSearch, replaceTo);
+    }
+    
+    next();
+});
+
 const Book = new mongoose.model("Book", bookSchema)
 
 //HANDLERS
