@@ -15,7 +15,7 @@ const bookSchema = new mongoose.Schema({
 })
 
 bookSchema.pre("save", function(next){
-    const replaceSearch = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png"'
+    const replaceSearch = 'src="https://www.paypalobjects.com/he_IL/i/btn/btn_cart_LG.gif"'
     const replaceTo = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png" class= "addToCartImg"'
     let htmlString = this.payBtn
     this.payBtn = htmlString.replace(replaceSearch, replaceTo)
