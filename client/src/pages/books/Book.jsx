@@ -9,14 +9,11 @@ export const Book = ({item})=>{
     const {doc: book, extraData} = item
     const hasExtraData = extraData && extraData.length >0
 
-    /** * Creates a object with modified HTML for use in React's `dangerouslySetInnerHTML`.
-     *used for the payment button, adds a css class to the add to cart icon
+    /** * Creates a object with HTML for use in React's `dangerouslySetInnerHTML`.
+     *used for the payment button
  */
     function createMarkup(htmlString) {
-        const replaceSearch = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png"'
-        const replaceTo = replaceSearch+' class= "addToCartImg"'
-        const newHtmlStr = htmlString.replace(replaceSearch, replaceTo)
-        return {__html: newHtmlStr};
+        return {__html: htmlString};
       }
 
     return(
@@ -34,7 +31,7 @@ export const Book = ({item})=>{
                     <Card.Text className={`${bookStyles.text}`}>
                         <b>תקציר</b>
                         <br/>
-                        <span className={bookStyles.summary}>{book.summary}</span>
+                        <span className={`${bookStyles.summary} ${book.zenere === "אנגלית" ? bookStyles.englishText : ""}`}>{book.summary}</span>
                     </Card.Text>
                 
             </Card>

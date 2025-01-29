@@ -14,25 +14,36 @@ const bookSchema = new mongoose.Schema({
     authorHasMoreBooks: {type: Boolean, default: false}
 })
 
+
 bookSchema.pre("save", function(next){
-    const replaceSearch = 'src="https://www.paypalobjects.com/he_IL/i/btn/btn_cart_LG.gif"'
-    const replaceTo = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png" class= "addToCartImg"'
-    let htmlString = this.payBtn
-    this.payBtn = htmlString.replace(replaceSearch, replaceTo)
+    if (this.payBtn && typeof this.payBtn === "string"){
+        const replaceSearch = 'src="https://www.paypalobjects.com/he_IL/i/btn/btn_cart_LG.gif"'
+        const replaceTo = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png" class= "addToCartImg"'
+        let htmlString = this.payBtn
+        this.payBtn = htmlString.replace(replaceSearch, replaceTo)
+    }
     next()
 })
 
+
+
 bookSchema.pre("findOneAndUpdate", function(next) {
     const replaceSearch = 'src="https://www.paypalobjects.com/he_IL/i/btn/btn_cart_LG.gif"';
-    const replaceTo = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png" class= "addToCartImg"';
-    
+    const replaceTo = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png" class="addToCartImg"';
+
     if (this._update.payBtn) {
+        console.log("made it");
         let htmlString = this._update.payBtn;
         this._update.payBtn = htmlString.replace(replaceSearch, replaceTo);
+
+        this.setUpdate({ payBtn: this._update.payBtn });
     }
-    
+
+    console.log(this._update.payBtn); 
+
     next();
 });
+
 
 const Book = new mongoose.model("Book", bookSchema)
 

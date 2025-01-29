@@ -33,6 +33,35 @@ storySchema.pre("findOne", function(next){
     next()
 })
 
+storySchema.pre("save", function(next){
+    if (this.payBtn && typeof this.payBtn === "string"){
+        const replaceSearch = 'src="https://www.paypalobjects.com/he_IL/i/btn/btn_cart_LG.gif"'
+        const replaceTo = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png" class= "addToCartImg"'
+        let htmlString = this.payBtn
+        this.payBtn = htmlString.replace(replaceSearch, replaceTo)
+    }
+    next()
+})
+
+
+
+storySchema.pre("findOneAndUpdate", function(next) {
+    const replaceSearch = 'src="https://www.paypalobjects.com/he_IL/i/btn/btn_cart_LG.gif"';
+    const replaceTo = 'src="https://i.ibb.co/4P5LKnk/ei-1704014855402-removebg-preview.png" class="addToCartImg"';
+
+    if (this._update.payBtn) {
+        console.log("made it");
+        let htmlString = this._update.payBtn;
+        this._update.payBtn = htmlString.replace(replaceSearch, replaceTo);
+
+        this.setUpdate({ payBtn: this._update.payBtn });
+    }
+
+    console.log(this._update.payBtn); 
+
+    next();
+});
+
 const Story = new mongoose.model("Story", storySchema)
 
 //HANDLERS

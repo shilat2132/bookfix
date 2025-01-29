@@ -11,20 +11,30 @@ export const Story = ({item})=>{
    
     const hasExtraData = extraData && extraData.length >0
 
-return(
-<div className="container" style={hasExtraData ? {} : {marginBottom: "9%"}}>
-    <Card className={`${bookStyles.card} ${bookStyles.storyCard}`}>
-        <div>
-            <Card.Img className={`${bookStyles.cover}`} variant="top" src={book.cover} alt={book.title}/>
-            <Card.Body >
-                <Card.Title className={`${bookStyles.title}`}>{book.title}</Card.Title>
-                <Card.Subtitle className={`${bookStyles.author} mb-2 text-muted`}>{book.author}<br/> {book.price}₪ </Card.Subtitle>
-            </Card.Body>
-        </div>
-        <div className={`${bookStyles.text}`}>
-            <StoryTabs summary={book.summary} aboutStory={book.aboutStory} prologe={book.prologe}/>
-        </div>
-    </Card>
+    
+    /** * Creates a object with HTML for use in React's `dangerouslySetInnerHTML`.
+     *used for the payment button
+ */
+     function createMarkup(htmlString) {
+        return {__html: htmlString};
+      }
+
+    return(
+        <div className="container" style={hasExtraData ? {} : {marginBottom: "9%"}}>
+            <Card className={`${bookStyles.card} ${bookStyles.storyCard}`}>
+                <div>
+                    <Card.Img className={`${bookStyles.cover}`} variant="top" src={book.cover} alt={book.title}/>
+                    <Card.Body >
+                        <Card.Title className={`${bookStyles.title}`}>{book.title}</Card.Title>
+                        <Card.Subtitle className={`${bookStyles.author} mb-2 text-muted`}>{book.author}<br/> {book.price}₪ 
+                            {book.payBtn && <><br/><div dangerouslySetInnerHTML={createMarkup(book.payBtn)}/> </>}
+                        </Card.Subtitle>
+                    </Card.Body>
+                </div>
+                <div className={`${bookStyles.text}`}>
+                    <StoryTabs summary={book.summary} aboutStory={book.aboutStory} prologe={book.prologe}/>
+                </div>
+            </Card>
 
         <CommentsSection comments={book.comments}/>
 

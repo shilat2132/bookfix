@@ -11,7 +11,7 @@ export const StoryTabs = ({summary, aboutStory, prologe})=>{
             return prologe.substr(0, 390)
         }
         // eslint-disable-next-line
-    }, [])
+    }, [prologe])
 
     // set the default content to summary, controls the content to be showed
     const [content, setContent] = useState({passage: summary, additional: null})

@@ -16,6 +16,10 @@
     font-weight: 700;
 }
 
+.englishText{
+    direction: ltr;
+}
+
 .fullProloge{
     overflow-y: scroll;
     max-height: 300px;
