@@ -17,7 +17,7 @@ A MERN stack web application for buying second-hand books. Users can browse avai
 1. Clone the repository:
    ```bash
    git clone https://github.com/shilat2132/bookfix-api.git
-````
+``
 
 2. Navigate to the project directory:
 
