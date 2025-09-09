@@ -1,5 +1,4 @@
 
-````markdown
 # Second-Hand Books Marketplace
 
 A MERN stack web application for buying second-hand books. Users can browse available books, view details and make purchases.
